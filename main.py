@@ -49,14 +49,6 @@ nlp = stanza.Pipeline(lang='es', processors='tokenize,mwt,pos,lemma,depparse')
 # se maneja en formato de documento por lo tanto mandamos nuestra muestra
 doc = nlp(MyText)
 
-# Mostramos el documento para ver lo que se obtiene
-#print(doc, '\n')
-#print(doc.entities, '\n')
-##Para obtener de forma pas consisa lo que necesitamos podemos visualizarlo de este modo
-#print(*[f'Palabra: {word.text + " "}\tLemma: {word.lemma}\tPOS: {word.pos}' for sent in doc.sentences for word in
-      #  sent.words], sep='\n')
-
-
 ##Obtenemos las palabras lemmatizadas
 palabras=[f'{word.lemma}' for sent in doc.sentences for word in sent.words]
 print(palabras)
@@ -98,7 +90,17 @@ lsm = {"abeja": 'abeja.mp4',
        'presente': 'presente.mp4',
        'ridiculo': 'ridiculo.mp4',
        'sobre': 'sobre.mp4',
-       'terminar': 'terminar.mp4',}
+       'terminar': 'terminar.mp4',
+       'auto': 'auto.mp4',
+       'automóvil': 'automóvil.mp4',
+       'coche': 'coche.mp4',
+       'comer': 'comer.mp4',
+       'comida': 'comida.mp4',
+       'reclamar': 'reclamar.mp4',
+       'reprochar': 'reprochar.mp4',
+       'vehículo': 'vehículo.mp4',
+       'viento': 'viento.mp4',
+       }
 
 for nom in palabras:
     nomVideo = lsm[nom]                 ##envio de palabras mediante lista
