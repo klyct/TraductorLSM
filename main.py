@@ -21,7 +21,7 @@ def start_recording():
 
         # Actualizar el ícono del micrófono a rojo
         microphone_image = Image.open("microphone_red.png")
-        microphone_image = microphone_image.resize((30, 30), Image.ANTIALIAS)
+        microphone_image = microphone_image.resize((30, 30),  Image.LANCZOS)
         microphone_icon = ImageTk.PhotoImage(microphone_image)
         microphone_label.config(image=microphone_icon)
         microphone_label.image = microphone_icon
@@ -36,7 +36,7 @@ def start_recording():
 
         # Actualizar el ícono del micrófono a gris
         microphone_image = Image.open("microphone_gray.png")
-        microphone_image = microphone_image.resize((30, 30), Image.ANTIALIAS)
+        microphone_image = microphone_image.resize((30, 30),  Image.LANCZOS)
         microphone_icon = ImageTk.PhotoImage(microphone_image)
         microphone_label.config(image=microphone_icon)
         microphone_label.image = microphone_icon
@@ -163,7 +163,7 @@ title_label.pack(pady=10)
 
 # Cargar el ícono del micrófono
 microphone_image = Image.open("microphone_gray.png")
-microphone_image = microphone_image.resize((30, 30), Image.ANTIALIAS)
+microphone_image = microphone_image.resize((30, 30),  Image.LANCZOS)
 microphone_icon = ImageTk.PhotoImage(microphone_image)
 
 # Etiqueta del ícono del micrófono
