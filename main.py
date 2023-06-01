@@ -4,6 +4,7 @@ import re
 import contractions
 import stanza
 import cv2
+from PIL import Image, ImageTk
 
 # Variable global para almacenar el texto reconocido
 recognized_text = ""
@@ -17,10 +18,28 @@ def start_recording():
     with sr.Microphone(device_index=1) as source2:
         # Obtención de audio
         print("Recording")
+
+        # Actualizar el ícono del micrófono a rojo
+        microphone_image = Image.open("microphone_red.png")
+        microphone_image = microphone_image.resize((30, 30), Image.ANTIALIAS)
+        microphone_icon = ImageTk.PhotoImage(microphone_image)
+        microphone_label.config(image=microphone_icon)
+        microphone_label.image = microphone_icon
+
+        # Forzar la actualización de la interfaz gráfica
+        root.update()
+
         # Apagar el micrófono 2s después de un silencio, en ruido ambiental
         r.adjust_for_ambient_noise(source2, duration=0.2)
         audio2 = r.listen(source2)
         print("Done")
+
+        # Actualizar el ícono del micrófono a gris
+        microphone_image = Image.open("microphone_gray.png")
+        microphone_image = microphone_image.resize((30, 30), Image.ANTIALIAS)
+        microphone_icon = ImageTk.PhotoImage(microphone_image)
+        microphone_label.config(image=microphone_icon)
+        microphone_label.image = microphone_icon
 
         # Conversión voz -> texto
         recognized_text = r.recognize_google(audio2, language='es-MX')
@@ -141,6 +160,15 @@ root.configure(bg="#F0F0F0")  # Cambiar el color de fondo
 # Etiqueta de título
 title_label = tk.Label(root, text="Para hacer la traducción de tu voz a LSM, primero presiona 'Iniciar grabación' y una vez tengas la grabación, presiona 'Traducir'", font=("Arial", 18), wraplength=500)
 title_label.pack(pady=10)
+
+# Cargar el ícono del micrófono
+microphone_image = Image.open("microphone_gray.png")
+microphone_image = microphone_image.resize((30, 30), Image.ANTIALIAS)
+microphone_icon = ImageTk.PhotoImage(microphone_image)
+
+# Etiqueta del ícono del micrófono
+microphone_label = tk.Label(root, image=microphone_icon, bg="#F0F0F0")
+microphone_label.pack(pady=10)
 
 # Botón de inicio de grabación
 record_button = tk.Button(root, text="Iniciar grabación", font=("Arial", 14), command=start_recording)
